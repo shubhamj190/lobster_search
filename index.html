@@ -254,13 +254,40 @@
                 Getting started is simple.<br>Here's your path to meaningful connections.
             </p>
 
-            <!-- Active Step Card (Step 3 Highlighted per screenshot) -->
-            <div class="step-card">
-                <div class="step-content">
-                    <h3>Get Verified</h3>
-                    <p>After verification, if it feels like a match, you're in!</p>
+            <!-- Active Step Card Container -->
+            <div class="step-card-container">
+                <!-- Step 1 -->
+                <div class="step-card active" data-step="1">
+                    <div class="step-content">
+                        <h3>Download App</h3>
+                        <p>Get the Lobster app and create your free account.</p>
+                    </div>
+                    <div class="step-number-bg">1</div>
                 </div>
-                <div class="step-number-bg">3</div>
+                <!-- Step 2 -->
+                <div class="step-card" data-step="2">
+                    <div class="step-content">
+                        <h3>Create Profile</h3>
+                        <p>Showcase your personality with photos and prompts.</p>
+                    </div>
+                    <div class="step-number-bg">2</div>
+                </div>
+                <!-- Step 3 -->
+                <div class="step-card" data-step="3">
+                    <div class="step-content">
+                        <h3>Get Verified</h3>
+                        <p>After verification, if it feels like a match, you're in!</p>
+                    </div>
+                    <div class="step-number-bg">3</div>
+                </div>
+                <!-- Step 4 -->
+                <div class="step-card" data-step="4">
+                    <div class="step-content">
+                        <h3>Start Matching</h3>
+                        <p>Meet verified singles in real life events.</p>
+                    </div>
+                    <div class="step-number-bg">4</div>
+                </div>
             </div>
 
             <!-- Numbered Circles Decoration -->
@@ -414,6 +441,64 @@
             <p class="copyright">© 2024 Lobster Search. All rights reserved.</p>
         </section>
     </div>
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-header">
+                <h2>Join Lobster Search</h2>
+                <p>Start your journey to meaningful connections.</p>
+            </div>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="First_Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="Last_Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" name="Date_of_Birth" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <div class="phone-input-group">
+                        <select id="countryCode" name="Country_Code" class="country-code">
+                            <option value="+1">+1 (US)</option>
+                            <option value="+44">+44 (UK)</option>
+                            <option value="+91" selected>+91 (IN)</option>
+                            <option value="+61">+61 (AU)</option>
+                            <!-- Add more as needed -->
+                        </select>
+                        <input type="tel" id="phone" name="Phone" placeholder="9876543210" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="Gender" required>
+                        <option value="" disabled selected>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Non-binary">Non-binary</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="City" required>
+                </div>
+
+                <!-- Hidden Fields for Zoho CRM -->
+                <input type="hidden" id="leadSource" name="Lead_Source" value="Lobster Search Website">
+                <input type="hidden" id="createdTime" name="Created_Time">
+
+                <button type="submit" class="btn-submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 
