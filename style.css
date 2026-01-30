@@ -186,11 +186,11 @@ body {
 
 .hero-title {
     font-family: var(--font-heading);
-    font-weight: 1000;
+    font-weight: 900;
     font-size: 55px;
-    line-height: .95em;
+    line-height: 0.75em;
     letter-spacing: -1.7px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     animation: slideUp 0.8s ease-out;
 }
 
