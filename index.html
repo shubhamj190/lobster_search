@@ -299,7 +299,7 @@
 
             <div class="polaroid-container">
                 <!-- Card 1 -->
-                <div class="polaroid p-1">
+                <div class="polaroid p-1" data-video="assests/video1.mp4">
                     <div class="polaroid-visual"
                         style="background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop')">
                         <div class="play-btn">▶</div>
@@ -310,18 +310,18 @@
                 </div>
 
                 <!-- Card 2 -->
-                <div class="polaroid p-2">
+                <div class="polaroid p-2" data-video="assests/video2.mp4">
                     <div class="polaroid-visual"
-                        style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop')">
+                        style="background-image: url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop')">
                         <div class="play-btn">▶</div>
                     </div>
                     <div class="polaroid-text">
-                        <strong>Shikha</strong><br><span>Product Designer</span>
+                        <strong>Naman</strong><br><span>Product Designer</span>
                     </div>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="polaroid p-3">
+                <div class="polaroid p-3" data-video="assests/video3.mp4">
                     <div class="polaroid-visual"
                         style="background-image: url('https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=200&auto=format&fit=crop')">
                         <div class="play-btn">▶</div>
@@ -332,6 +332,19 @@
                 </div>
             </div>
         </section>
+
+        <!-- Video Modal -->
+        <div id="videoModal" class="modal video-modal">
+            <div class="modal-content video-modal-content">
+                <span class="close-btn video-close">&times;</span>
+                <div class="video-wrapper">
+                    <video id="testimonialVideo" controls>
+                        <source src="" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
 
         <!-- FAQ Section -->
         <section class="faq-section">

@@ -140,4 +140,44 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     });
 
+    // Video Modal Logic
+    const videoModal = document.getElementById('videoModal');
+    const videoCloseBtn = document.querySelector('.video-close');
+    const videoElement = document.getElementById('testimonialVideo');
+    const polaroids = document.querySelectorAll('.polaroid');
+
+    polaroids.forEach(card => {
+        card.addEventListener('click', () => {
+            const videoSrc = card.getAttribute('data-video');
+            if (videoSrc) {
+                videoElement.src = videoSrc;
+                videoModal.style.display = 'flex';
+                setTimeout(() => {
+                    videoModal.classList.add('show');
+                    videoElement.play();
+                }, 10);
+            }
+        });
+    });
+
+    const closeVideoModal = () => {
+        videoElement.pause();
+        videoElement.currentTime = 0;
+        videoModal.classList.remove('show');
+        setTimeout(() => {
+            videoModal.style.display = 'none';
+            videoElement.src = ''; // Clear source to stop buffering
+        }, 300);
+    };
+
+    if (videoCloseBtn) {
+        videoCloseBtn.addEventListener('click', closeVideoModal);
+    }
+
+    window.addEventListener('click', (e) => {
+        if (e.target === videoModal) {
+            closeVideoModal();
+        }
+    });
+
 });

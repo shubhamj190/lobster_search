@@ -1182,6 +1182,7 @@ body {
     width: 140px;
     transform-origin: center;
     transition: transform 0.3s;
+    cursor: pointer;
 }
 
 .polaroid:hover {
@@ -1611,5 +1612,77 @@ body {
 @media (min-width: 600px) {
     .modal-content {
         padding: 40px;
+    }
+}
+
+/* Video Modal Specifics */
+.video-modal-content {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-width: 90vh;
+    /* Constrain by height mainly for vertical videos */
+    width: auto;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: auto;
+}
+
+.video-wrapper {
+    position: relative;
+    width: auto;
+    height: auto;
+    max-height: 80vh;
+    max-width: 90vw;
+    background-color: black;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-wrapper video {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    /* Ensure no stretching */
+    display: block;
+}
+
+.video-close {
+    color: white;
+    right: -40px;
+    /* Move outside */
+    top: 0;
+    z-index: 1001;
+    background: rgba(255, 255, 255, 0.2);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    font-size: 20px;
+    backdrop-filter: blur(4px);
+}
+
+.video-close:hover {
+    color: #ff6b6b;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 600px) {
+    .video-close {
+        right: 0;
+        top: -40px;
+    }
+
+    .video-wrapper {
+        max-width: 95vw;
     }
 }
