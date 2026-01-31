@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Signup Modal Logic
     const modal = document.getElementById('signupModal');
-    const closeBtn = document.querySelector('.close-btn');
+    const closeBtn = modal.querySelector('.close-btn');
     const signupForm = document.getElementById('signupForm');
 
     // Select all signup/join buttons
