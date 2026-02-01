@@ -28,8 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// 1. Get Access Token using Refresh Token
-$authUrl = 'https://accounts.zoho.com/oauth/v2/token';
+// 1. Get Access Token using Refresh Token (Data Center: IN)
+$authUrl = 'https://accounts.zoho.in/oauth/v2/token';
 $postData = [
     'refresh_token' => $refreshToken,
     'client_id' => $clientId,
@@ -68,8 +68,8 @@ if (!isset($input['data'])) {
     $crmData = $input;
 }
 
-// 3. Submit to Zoho CRM Leads API
-$crmUrl = 'https://www.zohoapis.com/crm/v2/Leads'; // Change module if needed
+// 3. Submit to Zoho CRM Leads API (Data Center: IN)
+$crmUrl = 'https://www.zohoapis.in/crm/v2/Leads'; // Change module if needed
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $crmUrl);
