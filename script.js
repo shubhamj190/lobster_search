@@ -66,7 +66,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const signupForm = document.getElementById('signupForm');
 
     // Select all signup/join buttons
-    const triggerBtns = document.querySelectorAll('.btn-signup, .btn-join, .btn-footer-signup');
+    // Select all signup/join buttons (Exclude specific Instagram button)
+    const triggerBtns = document.querySelectorAll('.btn-signup, .btn-footer-signup');
+
+    // Instagram Redirect
+    const instagramBtn = document.getElementById('instagramBtn');
+    if (instagramBtn) {
+        instagramBtn.addEventListener('click', () => {
+            // Open in new tab
+            window.open('https://www.instagram.com/lobstersearch/?hl=en', '_blank');
+        });
+    }
 
     // Open Modal
     triggerBtns.forEach(btn => {
