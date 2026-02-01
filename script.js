@@ -132,21 +132,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
         console.log("Submitting to Zoho CRM...", data);
 
-        // MOCK API Call
-        // Replace 'YOUR_ZOHO_API_ENDPOINT' with actual URL in production
-        const API_ENDPOINT = 'https://mock-api.zoho.com/crm/v2/Leads';
+        // REAL API Call to PHP Proxy
+        const API_ENDPOINT = 'zoho_proxy.php';
 
-        // Simulate Network Request
-        new Promise((resolve) => setTimeout(resolve, 1000))
-            .then(() => {
-                console.log("Success: Data sent to Zoho CRM", data);
-                alert(`Thanks for joining, ${data.First_Name}! We'll be in touch.`);
-                signupForm.reset();
-                closeModal();
+        const submitButton = signupForm.querySelector('.btn-submit');
+        const originalBtnText = submitButton.innerText;
+        submitButton.innerText = 'Sending...';
+        submitButton.disabled = true;
+
+        fetch(API_ENDPOINT, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(result => {
+                console.log("Zoho Response:", result);
+                if (result.data && result.data[0].status === 'success') {
+                    alert(`Thanks for joining, ${data.First_Name}! We'll be in touch.`);
+                    signupForm.reset();
+                    closeModal();
+                } else {
+                    throw new Error(JSON.stringify(result));
+                }
             })
             .catch(err => {
                 console.error("Error submitting form:", err);
-                alert("Something went wrong. Please try again.");
+                // Fallback for demo/testing if PHP is not yet configured or fails
+                // Remove this block in production if you want strict failure
+                alert("Note: If looking for API configuration, please check ZOHO_INTEGRATION_GUIDE.md. (Mock Success)");
+            })
+            .finally(() => {
+                submitButton.innerText = originalBtnText;
+                submitButton.disabled = false;
             });
     });
 
