@@ -1,0 +1,28 @@
+name: 🚀 Deploy Website
+
+on:
+  push:
+    branches:
+      - main  # Triggered when you push to main
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+
+    # Optional: If you have a build step (like React/Vue/Svelte)
+    # - name: 🔨 Build Project
+    #   run: |
+    #     npm install
+    #     npm run build
+
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: /public_html/  # The folder on Hostinger where your site lives
