@@ -25,4 +25,4 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: /public_html/  # The folder on Hostinger where your site lives
+        server-dir: /c39bd35a75b3ea4b/files/public_html/  # The folder on Hostinger where your site lives
