@@ -1166,33 +1166,66 @@ body {
     letter-spacing: 1px;
 }
 
-.polaroid-container {
+/* Carousel Styles */
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.carousel-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+}
+
+.carousel-slide {
+    flex: 0 0 33.333%;
+    /* 3 items visible */
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
-    width: 110%;
-    /* Allow overflow */
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .polaroid {
     background-color: white;
     padding: 10px 10px 30px 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    width: 140px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    width: 180px;
+    /* Slightly larger for carousel */
     transform-origin: center;
     transition: transform 0.3s;
     cursor: pointer;
+    position: relative;
+    transform: rotate(-2deg);
+    /* Subtle default rotation */
+}
+
+/* Add some variation to carousel items if desired, or keep uniform */
+.carousel-slide:nth-child(even) .polaroid {
+    transform: rotate(2deg);
 }
 
 .polaroid:hover {
-    transform: scale(1.1) rotate(0deg) !important;
+    transform: scale(1.05) rotate(0deg) !important;
     z-index: 10;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
 .polaroid-visual {
     width: 100%;
-    height: 120px;
+    height: 150px;
+    /* Taller visual */
     background-color: #eee;
     background-size: cover;
     background-position: center;
@@ -1205,16 +1238,17 @@ body {
 }
 
 .play-btn {
-    width: 30px;
-    height: 30px;
-    background-color: rgba(255, 255, 255, 0.8);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.9);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #333;
-    font-size: 0.8rem;
+    font-size: 1rem;
     padding-left: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .polaroid-text {
@@ -1225,30 +1259,76 @@ body {
 }
 
 .polaroid-text strong {
-    font-size: 0.9rem;
+    font-size: 1rem;
     display: block;
+    margin-bottom: 2px;
 }
 
 .polaroid-text span {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     color: #666;
     font-family: var(--font-hand);
 }
 
-/* Rotations */
-.p-1 {
-    transform: rotate(-10deg) translateY(10px);
-    z-index: 1;
+/* Navigation Buttons */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    color: #333;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.p-2 {
-    transform: rotate(0deg);
-    z-index: 2;
+.carousel-btn:hover {
+    background-color: white;
+    transform: translateY(-50%) scale(1.1);
 }
 
-.p-3 {
-    transform: rotate(10deg) translateY(10px);
-    z-index: 1;
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+@media (max-width: 768px) {
+    .carousel-slide {
+        flex: 0 0 50%;
+        /* 2 items on tablet */
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-slide {
+        flex: 0 0 100%;
+        /* 1 item on mobile */
+    }
+
+    .carousel-wrapper {
+        padding: 0 30px;
+        /* Space for buttons */
+    }
+
+    .prev-btn {
+        left: 0;
+    }
+
+    .next-btn {
+        right: 0;
+    }
 }
 
 

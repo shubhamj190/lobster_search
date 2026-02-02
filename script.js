@@ -21,44 +21,60 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     console.log("Lobster Search scripts loaded");
-    // Step Cards Logic
-    const steps = document.querySelectorAll('.step-card');
-    const circles = document.querySelectorAll('.num-circle');
-    let currentStep = 0;
-    const stepInterval = 3000; // 3 seconds per step
+    // Testimonial Carousel Logic
+    const track = document.querySelector('.carousel-track');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const nextBtn = document.querySelector('.next-btn');
+    const prevBtn = document.querySelector('.prev-btn');
 
-    function updateSteps(index) {
-        // Remove active class from all
-        steps.forEach(step => step.classList.remove('active'));
-        circles.forEach(circle => circle.classList.remove('active'));
+    if (track && slides.length > 0) {
+        let currentIndex = 0;
 
-        // Activate current
-        if (steps[index]) steps[index].classList.add('active');
-        if (circles[index]) circles[index].classList.add('active');
-    }
+        const getVisibleItems = () => {
+            if (window.innerWidth <= 480) return 1;
+            if (window.innerWidth <= 768) return 2;
+            return 3;
+        };
 
-    function nextStep() {
-        currentStep = (currentStep + 1) % steps.length;
-        updateSteps(currentStep);
-    }
+        const updateCarousel = () => {
+            const visibleItems = getVisibleItems();
+            const slideWidth = 100 / visibleItems;
+            track.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
+        };
 
-    // Initialize (Start at 0)
-    updateSteps(currentStep);
+        nextBtn.addEventListener('click', () => {
+            const visibleItems = getVisibleItems();
+            const maxIndex = slides.length - visibleItems;
 
-    // Auto-play
-    let rotationInterval = setInterval(nextStep, stepInterval);
-
-    // Click handlers for manual navigation
-    circles.forEach((circle, index) => {
-        circle.addEventListener('click', () => {
-            clearInterval(rotationInterval); // Pause auto-play
-            currentStep = index;
-            updateSteps(currentStep);
-
-            // Restart auto-play
-            rotationInterval = setInterval(nextStep, stepInterval);
+            if (currentIndex < maxIndex) {
+                currentIndex++;
+            } else {
+                currentIndex = 0; // Loop back to start
+            }
+            updateCarousel();
         });
-    });
+
+        prevBtn.addEventListener('click', () => {
+            const visibleItems = getVisibleItems();
+            const maxIndex = slides.length - visibleItems;
+
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = maxIndex; // Loop to end
+            }
+            updateCarousel();
+        });
+
+        // Update on resize to fix alignment
+        window.addEventListener('resize', () => {
+            // Ensure index is within bounds for new visibleItems
+            const visibleItems = getVisibleItems();
+            const maxIndex = slides.length - visibleItems;
+            if (currentIndex > maxIndex) currentIndex = maxIndex;
+            updateCarousel();
+        });
+    }
 
     // Signup Modal Logic
     const modal = document.getElementById('signupModal');
