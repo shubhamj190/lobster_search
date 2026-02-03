@@ -3,10 +3,6 @@
 // Handles secure token rotation and submission to Zoho CRM
 
 // --- CONFIGURATION ---
-// Replace these with your actual credentials from Zoho API Console
-$clientId = '1000.A3CH4NFIL55R2A4ZAKWM9TT1XGKQNT';
-$clientSecret = '8b008114642cdef434b5bc518d101f191123bf0aab';
-$refreshToken = '1000.b041575c23d88b016a6ae8b62a390632.9f1f1b6445242d76288378abed9a8817';
 // --------------------
 
 // Allow CORS (since fetch comes from browser)
